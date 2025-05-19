@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electronic Class Record System</title>
+    <link rel="stylesheet" href="wdstyle.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Electronic Class Record System</h1>
+        </header>
+        
+        <div class="nav-tabs">
+            <div class="nav-tab active" data-tab="students">Students</div>
+            <div class="nav-tab" data-tab="class-standing">Class Standing</div>
+            <div class="nav-tab" data-tab="major-exams">Major Exams</div>
+            <div class="nav-tab" data-tab="character">Character</div>
+            <div class="nav-tab" data-tab="attendance">Attendance</div>
+            <div class="nav-tab" data-tab="grades">Grades</div>
+			<div class="nav-tab" id="logoutBtn" style="margin-left: auto;">Logout</div>
+        </div>
+        
+
+        <div id="students" class="tab-content active">
+            <div class="file-upload">
+                <h3>Upload Student List</h3>
+                <p>Upload CSV/Excel file containing student names and IDs</p>
+                <input type="file" id="studentFile" accept=".csv,.xlsx,.xls">
+                <button class="btn-primary" id="uploadBtn">Upload</button>
+            </div>
+            
+            <button class="btn-secondary" id="addStudentBtn">Add New Student</button>
+            
+            <table id="studentsTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+        
+        
+        <div id="class-standing" class="tab-content">
+            <h2>Class Standing Records</h2>
+            <div class="form-group">
+                <label>Select Student:</label>
+                <select id="standingStudentSelect">
+                    
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Select Category:</label>
+                <select id="standingCategory">
+                    <option value="quiz">Quiz</option>
+                    <option value="activity">Activity</option>
+                    <option value="recitation">Recitation</option>
+                    <option value="project">Project</option>
+                    <option value="assignment">Assignment</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Score:</label>
+                <input type="number" id="standingScore" min="0" max="100">
+            </div>
+            
+            <button class="btn-primary" id="addStandingBtn">Add Record</button>
+            
+            <table id="standingTable">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Score</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+        
+
+        <div id="major-exams" class="tab-content">
+            <h2>Major Exams</h2>
+            <div class="form-group">
+                <label>Select Student:</label>
+                <select id="examStudentSelect">
+
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Select Exam Type:</label>
+                <select id="examType">
+                    <option value="midterm">Midterm Exam</option>
+                    <option value="final">Final Exam</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Score:</label>
+                <input type="number" id="examScore" min="0" max="100">
+            </div>
+            
+            <button class="btn-primary" id="addExamBtn">Add Exam Score</button>
+            
+            <table id="examsTable">
+                <thead>
+                    <tr>
+                        <th>Exam Type</th>
+                        <th>Score</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+        
+       
+        <div id="character" class="tab-content">
+            <h2>Character Assessment</h2>
+            <div class="form-group">
+                <label>Select Student:</label>
+                <select id="characterStudentSelect">
+
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Assessment Criteria:</label>
+                <select id="characterCriteria">
+                    <option value="behavior">Behavior</option>
+                    <option value="participation">Class Participation</option>
+                    <option value="teamwork">Teamwork</option>
+                    <option value="responsibility">Responsibility</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Rating (1-5):</label>
+                <input type="number" id="characterRating" min="1" max="5">
+            </div>
+            
+            <div class="form-group">
+                <label>Comments:</label>
+                <input type="text" id="characterComments">
+            </div>
+            
+            <button class="btn-primary" id="addCharacterBtn">Add Assessment</button>
+            
+            <table id="characterTable">
+                <thead>
+                    <tr>
+                        <th>Criteria</th>
+                        <th>Rating</th>
+                        <th>Comments</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+        
+        
+        <div id="attendance" class="tab-content">
+            <h2>Attendance Records</h2>
+            <div class="form-group">
+                <label>Select Student:</label>
+                <select id="attendanceStudentSelect">
+
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Date:</label>
+                <input type="date" id="attendanceDate">
+            </div>
+            
+            <div class="form-group">
+                <label>Status:</label>
+                <select id="attendanceStatus">
+                    <option value="present">Present</option>
+                    <option value="absent">Absent</option>
+                    <option value="late">Late</option>
+                    <option value="excused">Excused</option>
+                </select>
+            </div>
+            
+            <button class="btn-primary" id="addAttendanceBtn">Add Attendance</button>
+            
+            <table id="attendanceTable">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+        
+
+        <div id="grades" class="tab-content">
+            <h2>Grade Summary</h2>
+            <div class="form-group">
+                <label>Select Student:</label>
+                <select id="gradeStudentSelect">
+
+                </select>
+            </div>
+            
+            <div class="grade-summary">
+                <div class="grade-card">
+                    <h3>Midterm Grade</h3>
+                    <div class="grade-value" id="midtermGrade">--</div>
+                </div>
+                <div class="grade-card">
+                    <h3>Final Grade</h3>
+                    <div class="grade-value" id="finalGrade">--</div>
+                </div>
+                <div class="grade-card">
+                    <h3>Overall Grade</h3>
+                    <div class="grade-value" id="overallGrade">--</div>
+                </div>
+            </div>
+            
+            <h3>Grade Breakdown</h3>
+            <table id="gradeBreakdownTable">
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Weight</th>
+                        <th>Score</th>
+                        <th>Contribution</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Quiz</td>
+                        <td>20%</td>
+                        <td id="quizScore">--</td>
+                        <td id="quizContribution">--</td>
+                    </tr>
+                    <tr>
+                        <td>Project</td>
+                        <td>30%</td>
+                        <td id="projectScore">--</td>
+                        <td id="projectContribution">--</td>
+                    </tr>
+                    <tr>
+                        <td>Midterm Exam</td>
+                        <td>20%</td>
+                        <td id="midtermExamScore">--</td>
+                        <td id="midtermExamContribution">--</td>
+                    </tr>
+                    <tr>
+                        <td>Final Exam</td>
+                        <td>30%</td>
+                        <td id="finalExamScore">--</td>
+                        <td id="finalExamContribution">--</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        
+        const tabs = document.querySelectorAll('.nav-tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+              
+                tab.classList.add('active');
+                const activeTabContent = document.getElementById(tab.getAttribute('data-tab'));
+                activeTabContent.classList.add('active');
+            });
+        });
+
+        
+        let students = JSON.parse(localStorage.getItem('students')) || [];
+        let classStanding = JSON.parse(localStorage.getItem('classStanding')) || [];
+        let majorExams = JSON.parse(localStorage.getItem('majorExams')) || [];
+        let characterAssessments = JSON.parse(localStorage.getItem('characterAssessments')) || [];
+        let attendanceRecords = JSON.parse(localStorage.getItem('attendanceRecords')) || []; 
+        
+
+        
+        const studentsTable = document.querySelector('#studentsTable tbody');
+        const standingTable = document.querySelector('#standingTable tbody');
+        const examsTable = document.querySelector('#examsTable tbody');
+        const characterTable = document.querySelector('#characterTable tbody');
+        const attendanceTable = document.querySelector('#attendanceTable tbody'); 
+        
+        
+        const standingStudentSelect = document.getElementById('standingStudentSelect');
+        const examStudentSelect = document.getElementById('examStudentSelect');
+        const characterStudentSelect = document.getElementById('characterStudentSelect');
+        const attendanceStudentSelect = document.getElementById('attendanceStudentSelect'); 
+        const gradeStudentSelect = document.getElementById('gradeStudentSelect'); 
+
+        
+        function loadStudentDropdowns() {
+            standingStudentSelect.innerHTML = '';
+            examStudentSelect.innerHTML = '';
+            characterStudentSelect.innerHTML = '';
+            attendanceStudentSelect.innerHTML = ''; 
+            gradeStudentSelect.innerHTML = ''; 
+            
+            students.forEach(student => {
+                const option = document.createElement('option');
+                option.value = student.id;
+                option.textContent = student.name;
+                
+                standingStudentSelect.appendChild(option.cloneNode(true));
+                examStudentSelect.appendChild(option.cloneNode(true));
+                characterStudentSelect.appendChild(option.cloneNode(true));
+                attendanceStudentSelect.appendChild(option.cloneNode(true)); 
+                gradeStudentSelect.appendChild(option.cloneNode(true)); 
+            });
+        }
+
+        
+        function loadStudents() {
+            studentsTable.innerHTML = '';
+            students.forEach(student => {
+                const row = studentsTable.insertRow();
+                row.insertCell(0).textContent = student.id;
+                row.insertCell(1).textContent = student.name;
+                const actionsCell = row.insertCell(2);
+                actionsCell.innerHTML = `<button class="btn-danger">Delete</button>`;
+                actionsCell.querySelector('button').addEventListener('click', function() {
+                    deleteStudent(student.id);
+                });
+            });
+        }
+
+        
+        document.getElementById('addStudentBtn').addEventListener('click', function() {
+            const studentId = prompt("Enter Student ID:");
+            const studentName = prompt("Enter Student Name:");
+            if (studentId && studentName) {
+                students.push({ id: studentId, name: studentName });
+                localStorage.setItem('students', JSON.stringify(students));
+                loadStudents();
+                loadStudentDropdowns();
+            }
+        });
+
+        
+        function deleteStudent(studentId) {
+            students = students.filter(student => student.id !== studentId);
+            localStorage.setItem('students', JSON.stringify(students));
+            loadStudents();
+            loadStudentDropdowns();
+        }
+
+        
+        function loadClassStanding() {
+            standingTable.innerHTML = '';
+            classStanding.forEach(record => {
+                const row = standingTable.insertRow();
+                row.insertCell(0).textContent = record.category;
+                row.insertCell(1).textContent = record.score;
+                row.insertCell(2).textContent = record.date;
+                const actionsCell = row.insertCell(3);
+                actionsCell.innerHTML = `<button class="btn-danger">Delete</button>`;
+                actionsCell.querySelector('button').addEventListener('click', function() {
+                    deleteClassStanding(record);
+                });
+            });
+        }
+
+        document.getElementById('addStandingBtn').addEventListener('click', function() {
+            const studentId = standingStudentSelect.value;
+            const category = document.getElementById('standingCategory').value;
+            const score = document.getElementById('standingScore').value;
+            if (studentId && category && score) {
+                const record = {
+                    studentId,
+                    category,
+                    score,
+                    date: new Date().toLocaleString()
+                };
+                classStanding.push(record);
+                localStorage.setItem('classStanding', JSON.stringify(classStanding));
+                loadClassStanding();
+            }
+        });
+
+        function deleteClassStanding(recordToDelete) {
+            classStanding = classStanding.filter(record => record !== recordToDelete);
+            localStorage.setItem('classStanding', JSON.stringify(classStanding));
+            loadClassStanding();
+        }
+
+        
+        function loadMajorExams() {
+            examsTable.innerHTML = '';
+            majorExams.forEach(record => {
+                const row = examsTable.insertRow();
+                row.insertCell(0).textContent = record.examType;
+                row.insertCell(1).textContent = record.score;
+                row.insertCell(2).textContent = record.date;
+                const actionsCell = row.insertCell(3);
+                actionsCell.innerHTML = `<button class="btn-danger">Delete</button>`;
+                actionsCell.querySelector('button').addEventListener('click', function() {
+                    deleteMajorExam(record);
+                });
+            });
+        }
+
+        document.getElementById('addExamBtn').addEventListener('click', function() {
+            const studentId = examStudentSelect.value;
+            const examType = document.getElementById('examType').value;
+            const score = document.getElementById('examScore').value;
+            
+            if (studentId && examType && score) {
+                const record = {
+                    studentId,
+                    examType,
+                    score,
+                    date: new Date().toLocaleDateString()
+                };
+                majorExams.push(record);
+                localStorage.setItem('majorExams', JSON.stringify(majorExams));
+                loadMajorExams();
+                document.getElementById('examScore').value = '';
+            }
+        });
+
+        function deleteMajorExam(recordToDelete) {
+            majorExams = majorExams.filter(record => 
+                record.studentId !== recordToDelete.studentId || 
+                record.examType !== recordToDelete.examType || 
+                record.score !== recordToDelete.score ||
+                record.date !== recordToDelete.date
+            );
+            localStorage.setItem('majorExams', JSON.stringify(majorExams));
+            loadMajorExams();
+        }
+
+      
+        function loadCharacterAssessments() {
+            characterTable.innerHTML = '';
+            characterAssessments.forEach(record => {
+                const row = characterTable.insertRow();
+                row.insertCell(0).textContent = record.criteria;
+                row.insertCell(1).textContent = record.rating;
+                row.insertCell(2).textContent = record.comments;
+                row.insertCell(3).textContent = record.date;
+                const actionsCell = row.insertCell(4);
+                actionsCell.innerHTML = `<button class="btn-danger">Delete</button>`;
+                actionsCell.querySelector('button').addEventListener('click', function() {
+                    deleteCharacterAssessment(record);
+                });
+            });
+        }
+
+        document.getElementById('addCharacterBtn').addEventListener('click', function() {
+            const studentId = characterStudentSelect.value;
+            const criteria = document.getElementById('characterCriteria').value;
+            const rating = document.getElementById('characterRating').value;
+            const comments = document.getElementById('characterComments').value;
+            
+            if (studentId && criteria && rating) {
+                const record = {
+                    studentId,
+                    criteria,
+                    rating,
+                    comments,
+                    date: new Date().toLocaleDateString()
+                };
+                characterAssessments.push(record);
+                localStorage.setItem('characterAssessments', JSON.stringify(characterAssessments));
+                loadCharacterAssessments();
+                
+                document.getElementById('characterRating').value = '';
+                document.getElementById('characterComments').value = '';
+            }
+        });
+
+        function deleteCharacterAssessment(recordToDelete) {
+            characterAssessments = characterAssessments.filter(record => 
+                record.studentId !== recordToDelete.studentId || 
+                record.criteria !== recordToDelete.criteria || 
+                record.rating !== recordToDelete.rating ||
+                record.date !== recordToDelete.date
+            );
+            localStorage.setItem('characterAssessments', JSON.stringify(characterAssessments));
+            loadCharacterAssessments();
+        }
+
+        
+        function loadAttendanceRecords() {
+            attendanceTable.innerHTML = '';
+            attendanceRecords.forEach(record => {
+                const row = attendanceTable.insertRow();
+                row.insertCell(0).textContent = record.date;
+                row.insertCell(1).textContent = record.status;
+                const actionsCell = row.insertCell(2);
+                actionsCell.innerHTML = `<button class="btn-danger">Delete</button>`;
+                actionsCell.querySelector('button').addEventListener('click', function() {
+                    deleteAttendanceRecord(record);
+                });
+            });
+        }
+
+        document.getElementById('addAttendanceBtn').addEventListener('click', function() {
+            const studentId = attendanceStudentSelect.value;
+            const date = document.getElementById('attendanceDate').value;
+            const status = document.getElementById('attendanceStatus').value;
+            
+            if (studentId && date && status) {
+                const record = {
+                    studentId,
+                    date,
+                    status
+                };
+                attendanceRecords.push(record);
+                localStorage.setItem('attendanceRecords', JSON.stringify(attendanceRecords));
+                loadAttendanceRecords();
+                
+                
+                document.getElementById('attendanceDate').value = '';
+            }
+        });
+
+        function deleteAttendanceRecord(recordToDelete) {
+            attendanceRecords = attendanceRecords.filter(record => 
+                record.studentId !== recordToDelete.studentId || 
+                record.date !== recordToDelete.date ||
+                record.status !== recordToDelete.status
+            );
+            localStorage.setItem('attendanceRecords', JSON.stringify(attendanceRecords));
+            loadAttendanceRecords();
+        }
+
+        
+        function calculateGrades() {
+            const studentId = gradeStudentSelect.value;
+            if (!studentId) return;
+
+            
+            const studentStandings = classStanding.filter(r => r.studentId === studentId);
+            const studentExams = majorExams.filter(r => r.studentId === studentId);
+            
+          
+            const quizAverage = calculateCategoryAverage(studentStandings, 'quiz');
+            const activityAverage = calculateCategoryAverage(studentStandings, 'activity');
+            const projectAverage = calculateCategoryAverage(studentStandings, 'project');
+            const midtermExam = getExamScore(studentExams, 'midterm');
+            const finalExam = getExamScore(studentExams, 'final');
+            
+          
+            const weightedQuiz = quizAverage * 0.2;
+            const weightedActivity = activityAverage * 0.3;
+            const weightedProject = projectAverage * 0.3;
+            const weightedMidterm = midtermExam * 0.1;
+            const weightedFinal = finalExam * 0.1;
+            
+            const overallGrade = weightedQuiz + weightedActivity + weightedProject + weightedMidterm + weightedFinal;
+            
+            
+            document.getElementById('quizScore').textContent = quizAverage.toFixed(2);
+            document.getElementById('projectScore').textContent = projectAverage.toFixed(2);
+            document.getElementById('midtermExamScore').textContent = midtermExam.toFixed(2);
+            document.getElementById('finalExamScore').textContent = finalExam.toFixed(2);
+            
+            document.getElementById('quizContribution').textContent = weightedQuiz.toFixed(2);
+            document.getElementById('projectContribution').textContent = weightedProject.toFixed(2);
+            document.getElementById('midtermExamContribution').textContent = weightedMidterm.toFixed(2);
+            document.getElementById('finalExamContribution').textContent = weightedFinal.toFixed(2);
+            
+            document.getElementById('midtermGrade').textContent = (weightedQuiz + weightedActivity + weightedMidterm).toFixed(2);
+            document.getElementById('finalGrade').textContent = overallGrade.toFixed(2);
+            document.getElementById('overallGrade').textContent = overallGrade.toFixed(2);
+        }
+
+        function calculateCategoryAverage(records, category) {
+            const categoryRecords = records.filter(r => r.category === category);
+            if (categoryRecords.length === 0) return 0;
+            
+            const sum = categoryRecords.reduce((total, record) => total + parseFloat(record.score), 0);
+            return sum / categoryRecords.length;
+        }
+
+        function getExamScore(exams, examType) {
+            const exam = exams.find(e => e.examType === examType);
+            return exam ? parseFloat(exam.score) : 0;
+        }
+
+        
+        loadStudents();
+        loadStudentDropdowns();
+        loadClassStanding();
+        loadMajorExams();
+        loadCharacterAssessments();
+        loadAttendanceRecords(); 
+        
+        
+        gradeStudentSelect.addEventListener('change', calculateGrades);
+		  document.getElementById('logoutBtn').addEventListener('click', function() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.clear();
+                window.location.href = 'login.html';
+            }
+        });
+    });
+</script>
+
+   
+
+</body>
+</html>
